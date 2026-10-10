@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jelajah Sejarah Tingkatan 3</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=_VejzVlPUbf-KNPxnJ-JLYCmGu0TqQcFmptdQBDW9Ew-K8ac04NTABfi5jl8h4uQV1t6SAzuCzQv_Cl1sRcecFEaT78NQ7XMlxWkmwCowE54Bc-wVqdktFYaN6npaugx6261f7PekJh3dpvonit1kdkL5WlyHoQRXyi84b9ECNs3oTslB0rbQRrX23asBJGTXeylGt0tTyRL7yUAPJDq6krZNoq4XF360uvqdU_UYg0yq84YBg_HJ6jIn_3SFWNugW8P8BaPateM0v3Wtn6FpkgYPDPPrJuiQctLJ91t0Qs35Xbux4aMg-VoRVvdMEK0loPwRReKAT_1sLzDUT-WRA" charset="UTF-8"></script><style>
+:root{--gold:#ffd34d;--wood:#57331e;--cream:#fff1c9;--ink:#182331}
+*{box-sizing:border-box}
+body{margin:0;font-family:Trebuchet MS,Arial,sans-serif;color:#fff;background:linear-gradient(135deg,#092f43,#176c79 50%,#1e4835);min-height:100vh;padding:18px}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:11px 16px;font-weight:800;transition:transform .15s,filter .15s}
+button:hover{filter:brightness(1.08);transform:translateY(-2px)}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.game{max-width:1200px;margin:auto;border:5px solid #a66a2e;border-radius:22px;overflow:hidden;background:#f4e2b8;box-shadow:0 15px 40px #0008}
+header{text-align:center;padding:22px 15px;background:linear-gradient(130deg,#422719,#805027,#342015);border-bottom:5px solid #c78b3a}
+header .eyebrow{letter-spacing:3px;font-size:.8rem;color:#ffda7b;font-weight:bold}
+h1{margin:5px 0;color:#fff5d6;font-size:clamp(2rem,5vw,4rem);line-height:1;text-shadow:3px 4px #22130d}
+header p{margin:10px 0 0;color:#ffe7a3;font-weight:bold}
+main{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:14px;padding:14px;background:linear-gradient(#e9d39a,#caa66a)}
+.board-area{min-width:0}
+.board{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.tile{min-height:126px;border:3px solid #fff8e1;border-radius:14px;padding:10px 7px;text-align:center;color:#192b39;box-shadow:0 4px 0 #76532d;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.tile .num{position:absolute;top:5px;left:7px;border-radius:50%;width:25px;height:25px;display:grid;place-items:center;background:#172632;color:white;font-weight:900}
+.tile .symbol{font-size:1.8rem}
+.tile .label{font-size:.82rem;font-weight:900}
+.tile .player{font-size:1.4rem;position:absolute;right:5px;bottom:3px;filter:drop-shadow(0 2px 1px #fff)}
+.tile.done{filter:saturate(.65);border-color:#8cba7b}
+.tile.current{outline:4px solid #ffd34d;outline-offset:1px;z-index:1}
+.tile.start{background:#80e0a7}.tile.q1{background:#ff9bb4}.tile.q2{background:#ffd46d}.tile.q3{background:#8edbfa}.tile.q4{background:#c7a8ff}.tile.q5{background:#b8ec89}.tile.q6{background:#8edbfa}.tile.q7{background:#ffd46d}.tile.q8{background:#d1a6ff}.tile.q9{background:#b8ec89}.tile.q10{background:#ff9bb4}.tile.finish{background:#f4c45c}
+.center-scene{margin-top:12px;border:4px solid #fff2cb;border-radius:16px;min-height:190px;padding:18px;text-align:center;color:#fff;background:linear-gradient(120deg,#123d4eaa,#163e2aaa),radial-gradient(circle at 70% 15%,#77c8d6,#275d42 45%,#143342);position:relative;overflow:hidden}
+.center-scene:before{content:"🏰　🌴　⛰️　🌴　🏰";position:absolute;inset:auto 0 4px;font-size:clamp(1.7rem,4vw,3.4rem);opacity:.8;white-space:nowrap}
+.center-scene h2{margin:0 0 8px;color:#ffdf7d;font-size:1.6rem}
+.center-scene p{max-width:580px;margin:0 auto;line-height:1.5;position:relative;z-index:1}
+.center-scene .quote{font-style:italic;color:#fff2c6;margin-top:10px}
+.sidebar{display:flex;flex-direction:column;gap:10px;color:#fff}
+.panel{background:linear-gradient(145deg,#4a2c1c,#251b17);border:3px solid #bd8239;border-radius:15px;padding:13px;box-shadow:0 4px 0 #8c5a2a}
+.panel h3{margin:0 0 9px;color:#ffda68;border-bottom:1px solid #a9773c;padding-bottom:7px;font-size:1.05rem}
+.big{font-size:2rem;text-align:center;font-weight:900;color:#fff4d0}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{background:#ffffff12;border-radius:10px;padding:8px;text-align:center}
+.stat small{display:block;color:#e9d1ac}
+.controls{display:flex;gap:8px;flex-wrap:wrap}
+#rollBtn{background:#ffd34d;color:#33200e;flex:1}
+#restartBtn{background:#f3d5ad;color:#382114}
+#dice{font-size:3.2rem;text-align:center;line-height:1.15;margin:3px}
+.hint{font-size:.88rem;line-height:1.45;color:#f8e7c7}
+.legend{font-size:.84rem;line-height:1.7}
+footer{text-align:center;background:#291b13;padding:12px;color:#f9dca1;font-size:.82rem}
+.overlay{position:fixed;inset:0;background:#06131ddd;display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+.overlay.show{display:flex}
+.modal{max-width:610px;width:100%;background:#fff2d3;color:#26313b;border:5px solid #c88b37;border-radius:20px;padding:23px;box-shadow:0 15px 45px #0008}
+.modal h2{margin:0 0 10px;color:#59371f}
+.question-num{color:#8a5b2c;font-weight:900;text-transform:uppercase;letter-spacing:1px;font-size:.8rem}
+.answers{display:grid;gap:9px;margin:18px 0}
+.answer{background:#e6d2a9;color:#33271a;text-align:left;border:2px solid #c2a36b}
+.answer.correct{background:#a9e4b1;border-color:#39844b}.answer.wrong{background:#f3b0a9;border-color:#a43b32}
+.feedback{font-weight:bold;min-height:24px}
+.next{background:#234c3a;color:white;width:100%;margin-top:8px}
+#endTitle{font-size:2rem;color:#5d381c}
+@media(max-width:800px){main{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.panel:last-child{grid-column:1/-1}.tile{min-height:100px}.tile .label{font-size:.72rem}}
+@media(max-width:480px){body{padding:5px}.game{border-width:3px}main{padding:7px;gap:8px}.board{gap:4px}.tile{min-height:82px;padding:5px 2px;border-width:2px}.tile .symbol{font-size:1.2rem}.tile .label{font-size:.62rem}.tile .num{width:20px;height:20px;font-size:.75rem;top:2px;left:2px}.tile .player{font-size:1rem}.sidebar{gap:6px}.panel{padding:9px}.hint,.legend{font-size:.76rem}}
+</style>
+</head>
+<body>
+<div class="game">
+<header>
+  <div class="eyebrow">PERMAINAN PENGEMBARAAN ILMU</div>
+  <h1>JELAJAH SEJARAH<br><span style="color:#ffd34d">TINGKATAN 3</span></h1>
+  <p>Warisan Bangsa, Tanggungjawab Bersama</p>
+</header>
+<main>
+  <section class="board-area">
+    <div class="board" id="board" aria-label="Papan permainan"></div>
+    <div class="center-scene">
+      <h2 id="sceneTitle">Misi Bermula!</h2>
+      <p id="sceneText">Baling dadu, bergerak di papan dan jawab soalan Sejarah untuk mengumpul markah. Selesaikan 10 misi untuk menjadi juara!</p>
+      <p class="quote">“Kenali sejarah, hargai perjuangan bangsa.”</p>
+    </div>
+  </section>
+  <aside class="sidebar">
+    <section class="panel">
+      <h3>🎲 BALING DADU</h3>
+      <div id="dice">⚀</div>
+      <div class="controls">
+        <button id="rollBtn">Baling Dadu</button>
+        <button id="restartBtn">Mula Semula</button>
+      </div>
+      <p class="hint" id="turnHint">Tekan “Baling Dadu” untuk memulakan perjalanan.</p>
+    </section>
+    <section class="panel">
+      <h3>⭐ SKOR PEMAIN</h3>
+      <div class="stats">
+        <div class="stat"><small>Markah</small><div class="big" id="score">0</div></div>
+        <div class="stat"><small>Misi selesai</small><div class="big"><span id="progress">0</span>/10</div></div>
+        <div class="stat"><small>Betul</small><div class="big" id="correctCount">0</div></div>
+        <div class="stat"><small>Petak</small><div class="big" id="position">MULA</div></div>
+      </div>
+    </section>
+    <section class="panel">
+      <h3>🧭 CARA BERMAIN</h3>
+      <div class="legend">🎲 Baling dadu untuk bergerak.<br>📜 Jawab soalan pada petak yang disinggahi.<br>✅ Betul: +1 markah.<br>❌ Salah: 0 markah.<br>🏆 Selesaikan 10 soalan untuk tamat.</div>
+    </section>
+    <section class="panel">
+      <h3>💡 NOTA SEJARAH</h3>
+      <p class="hint">Sejarah membantu kita memahami identiti negara, menghargai perjuangan tokoh terdahulu dan membina masa depan yang lebih baik.</p>
+    </section>
+  </aside>
+</main>
+<footer>JELAJAH SEJARAH • TINGKATAN 3 • Belajar sambil bermain</footer>
+</div>
+
+<div class="overlay" id="questionOverlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="question-num" id="qNum">Misi 1 daripada 10</div>
+    <h2 id="questionText">Soalan</h2>
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+    <button class="next" id="continueBtn" style="display:none">Teruskan Pengembaraan</button>
+  </div>
+</div>
+<div class="overlay" id="endOverlay" role="dialog" aria-modal="true">
+  <div class="modal" style="text-align:center">
+    <div style="font-size:4rem">🏆</div>
+    <h2 id="endTitle">Tahniah, Juara Sejarah!</h2>
+    <p id="endText"></p>
+    <button class="next" id="playAgain">Main Lagi</button>
+  </div>
+</div>
+
+<script>
+const missions = [
+ {q:"Apakah maksud nasionalisme?",a:["Perasaan cinta akan bangsa dan negara","Keinginan menguasai negara lain","Sistem perdagangan antarabangsa","Perpindahan penduduk"],c:0,why:"Nasionalisme ialah perasaan cinta akan bangsa dan negara serta keinginan mempertahankan kedaulatan."},
+ {q:"Siapakah tokoh yang memimpin Kesultanan Melayu Melaka pada zaman kegemilangannya?",a:["Parameswara","Sultan Mansur Shah","Dol Said","Rentap"],c:1,why:"Sultan Mansur Shah sering dikaitkan dengan zaman kegemilangan Kesultanan Melayu Melaka."},
+ {q:"Apakah faktor kedatangan British ke Tanah Melayu?",a:["Mencari bahan mentah dan peluang perdagangan","Membina piramid","Mencari laluan ke Kutub Utara","Menyebarkan sukan moden"],c:0,why:"Kepentingan ekonomi seperti bijih timah dan peluang perdagangan mendorong kedatangan British."},
+ {q:"Pada tahun berapakah Persekutuan Tanah Melayu ditubuhkan?",a:["1942","1946","1948","1957"],c:2,why:"Persekutuan Tanah Melayu ditubuhkan pada 1 Februari 1948."},
+ {q:"Apakah peristiwa bersejarah yang berlaku pada 31 Ogos 1957?",a:["Pembentukan Malaysia","Kemerdekaan Persekutuan Tanah Melayu","Penubuhan Malayan Union","Perjanjian Pangkor"],c:1,why:"Persekutuan Tanah Melayu mencapai kemerdekaan pada 31 Ogos 1957."},
+ {q:"Apakah tujuan utama Rukun Negara diperkenalkan?",a:["Menggalakkan persaingan sukan","Menyatukan rakyat dan membina perpaduan","Menghapuskan semua bahasa","Menentukan harga barangan"],c:1,why:"Rukun Negara bertujuan membentuk perpaduan yang kukuh dalam kalangan rakyat Malaysia."},
+ {q:"Siapakah pengasas Parti Komunis Malaya (PKM) bukan seorang individu tunggal; PKM ditubuhkan pada tahun berapa?",a:["1920","1930","1945","1957"],c:1,why:"Parti Komunis Malaya ditubuhkan pada April 1930."},
+ {q:"Apakah kesan Darurat terhadap Tanah Melayu?",a:["Semua sekolah ditutup selama-lamanya","Langkah keselamatan diperketat dan kehidupan rakyat terjejas","Tiada perubahan langsung","Tanah Melayu terus menjadi republik"],c:1,why:"Darurat membawa kepada langkah keselamatan yang ketat serta menjejaskan kehidupan dan ekonomi masyarakat."},
+ {q:"Apakah yang dimaksudkan dengan Zaman Prasejarah?",a:["Zaman sebelum manusia mengenal tulisan","Zaman selepas internet dicipta","Zaman selepas kemerdekaan","Zaman penggunaan telefon pintar"],c:0,why:"Zaman Prasejarah ialah zaman sebelum manusia mengenal sistem tulisan."},
+ {q:"Mengapakah generasi muda perlu mempelajari sejarah?",a:["Untuk menghafal tarikh sahaja","Untuk memahami asal usul negara dan mengambil iktibar","Untuk mengelakkan semua perubahan","Untuk menggantikan mata pelajaran lain"],c:1,why:"Sejarah membantu generasi muda memahami identiti negara dan mengambil iktibar daripada masa lalu."}
+];
+const tiles = [
+ {n:0,label:"MULA",symbol:"🚩",type:"start",desc:"Mulakan pengembaraan"},
+ {n:1,label:"Nasionalisme",symbol:"✊",type:"q1"},
+ {n:2,label:"Kesultanan Melayu",symbol:"👑",type:"q2"},
+ {n:3,label:"Kedatangan British",symbol:"⛵",type:"q3"},
+ {n:4,label:"Persekutuan 1948",symbol:"🏛️",type:"q4"},
+ {n:5,label:"Kemerdekaan",symbol:"🇲🇾",type:"q5"},
+ {n:6,label:"Rukun Negara",symbol:"🌺",type:"q6"},
+ {n:7,label:"PKM",symbol:"📜",type:"q7"},
+ {n:8,label:"Zaman Darurat",symbol:"🛡️",type:"q8"},
+ {n:9,label:"Prasejarah",symbol:"🦣",type:"q9"},
+ {n:10,label:"Generasi Muda",symbol:"📚",type:"q10"},
+ {n:11,label:"TAMAT / JUARA",symbol:"🏆",type:"finish"}
+];
+const board=document.getElementById("board");
+let position=0,score=0,correct=0,answered=new Set(),busy=false,finished=false;
+const diceFaces=["⚀","⚁","⚂","⚃","⚄","⚅"];
+// Zig-zag arrangement to resemble a board-game route.
+const order=[0,1,2,3,4,5,10,9,8,7,6,11];
+function renderBoard(){
+ board.innerHTML="";
+ order.forEach((tileIndex)=>{
+  const t=tiles[tileIndex],el=document.createElement("div");
+  el.className="tile "+t.type;
+  el.dataset.pos=t.n;
+  el.innerHTML=`<span class="num">${t.n===0?"M":t.n===11?"★":t.n}</span><div class="symbol">${t.symbol}</div><div class="label">${t.label}</div><div class="player" id="pawn-${t.n}"></div>`;
+  board.appendChild(el);
+ });
+ updateBoard();
+}
+function updateBoard(){
+ document.querySelectorAll(".tile").forEach(el=>{
+  const p=Number(el.dataset.pos);
+  el.classList.toggle("current",p===position);
+  el.classList.toggle("done",p>0&&p<11&&answered.has(p));
+  const pawn=el.querySelector(".player");
+  pawn.textContent=p===position?"🧑‍🎓":"";
+ });
+ document.getElementById("score").textContent=score;
+ document.getElementById("progress").textContent=answered.size;
+ document.getElementById("correctCount").textContent=correct;
+ document.getElementById("position").textContent=position===0?"MULA":position===11?"TAMAT":position;
+}
+function setScene(title,text){document.getElementById("sceneTitle").textContent=title;document.getElementById("sceneText").textContent=text}
+function rollDice(){
+ if(busy||finished)return;
+ const roll=Math.floor(Math.random()*6)+1;
+ document.getElementById("dice").textContent=diceFaces[roll-1];
+ position=Math.min(position+roll,11);
+ document.getElementById("turnHint").textContent=`Anda mendapat ${roll}! Bergerak ke petak ${position===11?"TAMAT":position}.`;
+ updateBoard();
+ if(position>=11){finishGame();return}
+ if(!answered.has(position)){
+  setScene(`Misi ${position}: ${tiles[position].label}`,"Anda telah tiba di petak misi. Jawab soalan untuk mendapatkan markah.");
+  showQuestion(position-1);
+ }else{
+  setScene("Petak telah diterokai!","Anda sudah menjawab soalan ini. Baling dadu sekali lagi untuk meneruskan perjalanan.");
+ }
+}
+function showQuestion(index){
+ busy=true;
+ const m=missions[index];
+ document.getElementById("qNum").textContent=`Misi ${index+1} daripada 10`;
+ document.getElementById("questionText").textContent=m.q;
+ const area=document.getElementById("answers");area.innerHTML="";
+ document.getElementById("feedback").textContent="";
+ document.getElementById("continueBtn").style.display="none";
+ m.a.forEach((answer,i)=>{
+  const b=document.createElement("button");b.className="answer";b.textContent=String.fromCharCode(65+i)+". "+answer;
+  b.onclick=()=>chooseAnswer(i,b,index);
+  area.appendChild(b);
+ });
+ document.getElementById("questionOverlay").classList.add("show");
+}
+function chooseAnswer(choice,button,index){
+ const m=missions[index];
+ if(answered.has(index+1))return;
+ answered.add(index+1);
+ document.querySelectorAll(".answer").forEach((b,i)=>{b.disabled=true;if(i===m.c)b.classList.add("correct")});
+ if(choice===m.c){score++;correct++;document.getElementById("feedback").textContent="✅ Betul! +1 markah. "+m.why;setScene("Jawapan tepat!","Syabas! Anda semakin hampir menjadi Juara Sejarah.");}
+ else{button.classList.add("wrong");document.getElementById("feedback").textContent="❌ Belum tepat. "+m.why;setScene("Terus belajar!","Tidak mengapa. Setiap jawapan membantu anda memahami sejarah.");}
+ updateBoard();
+ document.getElementById("continueBtn").style.display="block";
+ document.getElementById("rollBtn").disabled=true;
+}
+document.getElementById("continueBtn").onclick=()=>{
+ document.getElementById("questionOverlay").classList.remove("show");
+ busy=false;document.getElementById("rollBtn").disabled=false;
+ document.getElementById("turnHint").textContent="Bagus! Baling dadu untuk meneruskan pengembaraan.";
+ if(answered.size===10){finishGame();return}
+ if(position===11)finishGame();
+};
+function finishGame(){
+ finished=true;busy=true;document.getElementById("rollBtn").disabled=true;
+ document.getElementById("endTitle").textContent=score>=8?"🏆 Juara Sejarah!":"🎉 Misi Selesai!";
+ document.getElementById("endText").textContent=`Anda mendapat ${score}/10 markah dan menjawab ${correct} soalan dengan betul. ${score>=8?"Hebat! Pengetahuan sejarah anda sangat baik.":"Teruskan ulang kaji dan cuba lagi untuk meningkatkan markah."}`;
+ document.getElementById("endOverlay").classList.add("show");
+ setScene("Pengembaraan selesai!","Terima kasih kerana menyertai Jelajah Sejarah Tingkatan 3.");
+}
+function restart(){
+ position=0;score=0;correct=0;answered=new Set();busy=false;finished=false;
+ document.getElementById("dice").textContent="⚀";
+ document.getElementById("rollBtn").disabled=false;
+ document.getElementById("questionOverlay").classList.remove("show");
+ document.getElementById("endOverlay").classList.remove("show");
+ document.getElementById("turnHint").textContent="Tekan “Baling Dadu” untuk memulakan perjalanan.";
+ setScene("Misi Bermula!","Baling dadu, bergerak di papan dan jawab soalan Sejarah untuk mengumpul markah. Selesaikan 10 misi untuk menjadi juara!");
+ updateBoard();
+}
+document.getElementById("rollBtn").onclick=rollDice;
+document.getElementById("restartBtn").onclick=restart;
+document.getElementById("playAgain").onclick=restart;
+renderBoard();
+</script>
+</body>
+</html>
